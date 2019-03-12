@@ -116,10 +116,16 @@ public class CircularArrayRing<E> extends AbstractCollection<E> implements Ring<
 			{
 				throw new NoSuchElementException();
 			}
-			//decrement number of iterations left, as this is 1 iteration
+			//decrement number of iterations left, as this is 1 iteration; decrement next pointer
 			this.numItersLeft--;
-			//decrement next, (modulo gives valid index if it goes negative); getCastedE() on result returns element
-			return CircularArrayRing.this.getCastedE(this.next = (this.next - 1) % CircularArrayRing.this.array.length);
+			this.next--;
+			//ensure next points to a valid index (positive and within range)
+			if (this.next < 0)
+			{
+				this.next += CircularArrayRing.this.array.length;
+			}
+			//getCastedE() used to get element at next pointer
+			return CircularArrayRing.this.getCastedE(this.next);
 		}
 		
 		//not implemented as per specification; throws exception
