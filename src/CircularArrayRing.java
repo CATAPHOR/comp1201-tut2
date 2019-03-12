@@ -80,16 +80,6 @@ public class CircularArrayRing<E> extends AbstractCollection<E> implements Ring<
 		//return element of type E at index with getCastedE()
 		return this.getCastedE(i);
 	}
-	
-	@SuppressWarnings("unchecked")
-	public void print()
-	{
-		for (Object o : this.array)
-		{
-			System.out.print((E) o);
-		}
-		System.out.print("\n");
-	}
 
 	//return logical size of array in ring
 	public int size() 
