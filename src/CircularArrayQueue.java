@@ -89,7 +89,7 @@ public class CircularArrayQueue implements MyQueue
 	//return if empty
 	public boolean isEmpty() 
 	{
-		return (this.tail == this.head);
+		return this.tail == this.head;
 	}
 	
 	//return number of free elements left in queue
