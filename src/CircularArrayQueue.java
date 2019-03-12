@@ -3,19 +3,19 @@ import java.util.*;
 public class CircularArrayQueue implements MyQueue
 {
 	//private ints to hold size, head and tail pointers
-	private int size, head, tail;
+	private int head, tail;
 	//private array holds elements of queue
 	private int[] array;
 	
 	//constructor initialises all class vars to 0 (empty) and creates empty array
 	public CircularArrayQueue()
 	{
-		this.size = this.head = this.tail = 0;
+		this.head = this.tail = 0;
 		this.array = new int[11];
 	}
 	
 	//enqueues int in array
-	public void enqueue(int i) 
+	public void enqueue(int i)
 	{
 		//if no capacity left, double array size
 		if (this.getCapacityLeft() == 0)
@@ -23,7 +23,7 @@ public class CircularArrayQueue implements MyQueue
 			this.array = doubleArraySize(this.array);
 		}
 		//place element at tail position and increment tail
-		this.array[tail++] = i;
+		this.array[this.tail++] = i;
 		//return tail to beginning of array if it exceeds the index range
 		this.tail %= this.array.length;
 	}
@@ -45,7 +45,7 @@ public class CircularArrayQueue implements MyQueue
 			{
 				output[input.length + i] = input[i];
 			}
-			//give tail new position at end of output's elements
+			//give tail new position after end of output's elements
 			this.tail = this.head + input.length - 1;
 		}
 		//return output array
