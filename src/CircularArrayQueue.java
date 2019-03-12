@@ -45,7 +45,7 @@ public class CircularArrayQueue implements MyQueue
 			{
 				output[input.length + i] = input[i];
 			}
-			//give tail new position at end of output's elements
+			//give tail new position after end of output's elements
 			this.tail = this.head + input.length - 1;
 		}
 		//return output array
