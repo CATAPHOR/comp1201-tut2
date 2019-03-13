@@ -34,25 +34,30 @@ public class CircularArrayRing<E> extends AbstractCollection<E> implements Ring<
 		this.tail = (this.tail + 1) % this.array.length;
 		//add element to tail position
 		this.array[this.tail] = e;
+		
 		//increase size if array not full
 		if (this.size < this.array.length)
 		{
 			this.size++;
+			//no element overwritten; return false
+			return false;
 		}
-		//return true as Collection specifies boolean
+		//else variable overwritten; return true
 		return true;
 	}
 	
 	//adds all elements in a Collection to queue
 	public boolean addAll(Collection<? extends E> c) 
 	{
+		boolean overwritten = false;
 		for (E e : c)
 		{
 			//add each element, e, in c to array
-			this.add(e);
+			//or statement returned by add() used to change boolean var
+			overwritten |= this.add(e);
 		}
-		//return true as Collection specifies boolean
-		return true;
+		//return whether elements were overwritten
+		return overwritten;
 	}
 
 	//returns casted element to type E from Object[] array element at index
@@ -99,7 +104,7 @@ public class CircularArrayRing<E> extends AbstractCollection<E> implements Ring<
 		//index of next element to be returned by iterator; starts 1 above tail as it is decremented
 		private int next = CircularArrayRing.this.tail + 1;
 		//number of iterations left initially given by the array size
-		private int numItersLeft = CircularArrayRing.this.size;
+		private int numItersLeft = CircularArrayRing.this.size();
 		
 		//returns whether the iteration has more elements
 		public boolean hasNext() 
